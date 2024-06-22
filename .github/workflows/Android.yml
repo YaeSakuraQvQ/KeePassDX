@@ -19,13 +19,11 @@ jobs:
           java-version: '18'
           distribution: 'adopt'
 
-      - name: Grant permissions
-        run: sudo chmod +x ./gradlew
-
-      - name: Setup and build
-        uses: gradle/gradle-build-action@v2
-        with:
-          tasks: 'assembleRelease'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      
+      - name: Build with Gradle
+        run: ./gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
